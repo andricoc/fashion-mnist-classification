@@ -1,6 +1,6 @@
 # Fashion MNIST Classification
 Small school project to do classification using maching learning on fashion mnist dataset.
-
+Using a simple neural network model, the result shows 87% accuracy in predicting the dataset.
 The code can be find in [classification.ipynb ](https://github.com/andricoc/fashion-mnist-classification/blob/main/classification.ipynb)
 
 ## Overview
