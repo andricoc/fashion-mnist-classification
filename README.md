@@ -38,4 +38,47 @@ After that, we fit the data into the model. This time i am using a simple custom
 ### Visual representation
 ![image](https://user-images.githubusercontent.com/63791918/229102679-de5a996d-f4a2-4b6e-b46d-4e92c01871a9.png)
 
-## Improvement
+# Improvement
+
+## Slightly Complex Model With Validation Data
+
+Split the data with 80 : 20 ratio for train and validation
+```python
+# Split the train data to train and validation data
+x_train, x_val, y_train, y_val = train_test_split(x_train, y_train, test_size=0.2, random_state=2019)
+```
+The model:
+
+![image](https://github.com/ricocahyadi777/fashion-mnist-classification/assets/63791918/cc39cf94-c200-4bb3-aea3-0d13f001ea62)
+
+Result:
+
+![image](https://github.com/ricocahyadi777/fashion-mnist-classification/assets/63791918/f8c27ad6-6395-4326-93f3-bb37fd42a59e)
+
+## Two-Branch Model
+
+The model:
+
+```python
+# Make the two branch model
+inputs = tf.keras.Input(shape = (28, 28, 1))
+x = layers.Conv2D(32, (3, 3), activation = 'relu')(inputs)
+x = layers.MaxPooling2D((2, 2))(x)
+block_1 = layers.Flatten()(x)
+
+x = layers.Flatten()(inputs)
+block_2 = layers.Dense(64, activation = 'relu')(x)
+                                     
+converge = tf.keras.layers.concatenate([block_1, block_2])
+
+x = layers.Dense(32, activation='relu') (converge)
+outputs = layers.Dense(10, activation='softmax') (x)
+                                     
+model2 = tf.keras.Model(inputs, outputs)
+```
+
+![image](https://github.com/ricocahyadi777/fashion-mnist-classification/assets/63791918/84e585aa-3453-4341-bc7e-ba6322d835e1)
+
+Result:
+
+![image](https://github.com/ricocahyadi777/fashion-mnist-classification/assets/63791918/68f962d3-d476-409d-9535-61608af4b177)
